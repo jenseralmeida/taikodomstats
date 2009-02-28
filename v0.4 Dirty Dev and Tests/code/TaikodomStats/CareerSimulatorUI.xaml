@@ -1,0 +1,23 @@
+﻿<Window x:Class="TaikodomStats.CareerSimulatorUI"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:data="clr-namespace:TaikodomStats.Data;assembly=TaikodomStats.Data"
+    Title="CareerSimulatorUI" Height="300" Width="300">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="Careers"
+   ObjectType="{x:Type data:InstanciateData}"
+   MethodName="GetCareers"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="113*" />
+            <ColumnDefinition Width="165*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="232*" />
+        </Grid.RowDefinitions>
+        <ComboBox Grid.ColumnSpan="2" Grid.Row="0" Height="23" Name="cbxCareer" VerticalAlignment="Top" ItemsSource="{Binding Source={StaticResource Careers}}" IsSynchronizedWithCurrentItem="True" />
+        <ListBox Grid.Column="0" Grid.Row="1" Name="lbxSkills" ItemsSource="{Binding Source={StaticResource Careers}, Path=Skills}" />
+    </Grid>
+</Window>

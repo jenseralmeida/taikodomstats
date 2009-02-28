@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikodomStats.Data", "TaikodomStats.Data\TaikodomStats.Data.csproj", "{EF5F709F-9BB5-4C21-AE25-26ADE3CA69B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikodomStats.Data.Tests", "TaikodomStats.Data.Tests\TaikodomStats.Data.Tests.csproj", "{C263969E-E652-4888-8CDF-EC9C507C4FC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverligthStats", "SilverligthStats\SilverligthStats.csproj", "{B53DCA6E-4E26-456A-A377-A6A56E172427}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverligthApp", "SilverligthApp\SilverligthApp.csproj", "{5A750A6A-6521-4E3E-8855-EBB01E078009}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimuladorCarreira", "SimuladorCarreira\SimuladorCarreira.csproj", "{0CCE5498-E280-4BBB-8B4D-D94E4A0430F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikodomStats.DataSL", "TaikodomStats.DataSL\TaikodomStats.DataSL.csproj", "{FBAB0F44-2851-463B-87BD-9DE240EEAC93}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF5F709F-9BB5-4C21-AE25-26ADE3CA69B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF5F709F-9BB5-4C21-AE25-26ADE3CA69B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF5F709F-9BB5-4C21-AE25-26ADE3CA69B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF5F709F-9BB5-4C21-AE25-26ADE3CA69B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C263969E-E652-4888-8CDF-EC9C507C4FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C263969E-E652-4888-8CDF-EC9C507C4FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C263969E-E652-4888-8CDF-EC9C507C4FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C263969E-E652-4888-8CDF-EC9C507C4FC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B53DCA6E-4E26-456A-A377-A6A56E172427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B53DCA6E-4E26-456A-A377-A6A56E172427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B53DCA6E-4E26-456A-A377-A6A56E172427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B53DCA6E-4E26-456A-A377-A6A56E172427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A750A6A-6521-4E3E-8855-EBB01E078009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A750A6A-6521-4E3E-8855-EBB01E078009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A750A6A-6521-4E3E-8855-EBB01E078009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A750A6A-6521-4E3E-8855-EBB01E078009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CCE5498-E280-4BBB-8B4D-D94E4A0430F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CCE5498-E280-4BBB-8B4D-D94E4A0430F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CCE5498-E280-4BBB-8B4D-D94E4A0430F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CCE5498-E280-4BBB-8B4D-D94E4A0430F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBAB0F44-2851-463B-87BD-9DE240EEAC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBAB0F44-2851-463B-87BD-9DE240EEAC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBAB0F44-2851-463B-87BD-9DE240EEAC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBAB0F44-2851-463B-87BD-9DE240EEAC93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

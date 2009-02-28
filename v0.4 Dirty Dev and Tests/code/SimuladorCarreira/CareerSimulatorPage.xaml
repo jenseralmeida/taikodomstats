@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="SimuladorCarreira.CareerSimulatorPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+    xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data">
+    <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="horizontalListBox">
+            <StackPanel Orientation="Horizontal" Height="30" Background="{x:Null}" VerticalAlignment="Center"/>
+        </ItemsPanelTemplate>
+        <!-- Appearence of avaliable skillpoints -->
+        <DataTemplate x:Key="individualSkillPointAvaliable">
+            <Button Content="{Binding Path=Point}"
+                    Width="25" ToolTipService.ToolTip="{Binding Path=Benefits}"
+                    Click="SkillPointMark_Click" />
+        </DataTemplate>
+        <!-- Appearence of used skillpoints -->
+        <DataTemplate x:Key="usedIndividualSkillPoint">
+            <Button Width="25" ToolTipService.ToolTip="{Binding Path=Benefits}"
+                    Click="SkillPointMark_Click" Background="DarkGreen" Foreground="White" Canvas.ZIndex="2">
+                <Button.Content>
+                    <Grid>
+                        <Rectangle Stroke="#FF000000" Width="25" Height="25">
+                            <Rectangle.RenderTransform>
+                                <TransformGroup>
+                                    <SkewTransform AngleX="-2" AngleY="-2"/>
+                                </TransformGroup>
+                            </Rectangle.RenderTransform>
+                            <Rectangle.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#FFB8E460" Offset="1"/>
+                                    <GradientStop Color="#FF96D614" Offset="0"/>
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=Point}"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
+
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Margin="0,4,4,4" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <TextBlock Grid.Column="0" FontSize="14" FontWeight="Bold"><Run Text="Carreira: "/></TextBlock>
+                <ComboBox Grid.Column="1" FontSize="14" FontWeight="Bold" x:Name="cbxCarreira" SelectionChanged="cbxCarreira_SelectionChanged" Width="Auto"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="LightGray" Margin="4,4,4,4">
+                <TextBlock Margin="8,0,0,0" Foreground="DarkGreen" FontWeight="Bold"><Run Text="Total de Pontos: "/></TextBlock>
+                <TextBlock Foreground="DarkGreen" FontWeight="Bold" Text="{Binding Path=Career.TotalPoints}"/>
+                <TextBlock Margin="8,0,4,0"><Run Text="|"/></TextBlock>
+                <TextBlock><Run Text="Pontos Usados: "/></TextBlock>
+                <TextBlock Text="{Binding Path=NumberOfUsedSkillPoints}"/>
+                <TextBlock Margin="8,0,4,0"><Run Text="|"/></TextBlock>
+                <TextBlock Foreground="Red" FontWeight="Bold"><Run Text="Pontos Disponíveis: "/></TextBlock>
+                <TextBlock Margin="0,0,8,0" Foreground="Red" FontWeight="Bold" Text="{Binding Path=NumberOfAvailableSkillPoints}"/>
+            </StackPanel>
+        </StackPanel>
+        <data:DataGrid x:Name="skillPointsGrid" Grid.Row="1" ItemsSource="{Binding Path=SkillPointsBySkill}" AutoGenerateColumns="False" HeadersVisibility="None" BorderBrush="{x:Null}" IsReadOnly="True" >
+            <data:DataGrid.Columns>
+                <data:DataGridTextColumn Width="Auto" Header="Skill" Binding="{Binding Skill.Name}" >
+                </data:DataGridTextColumn>
+                <data:DataGridTemplateColumn Width="Auto" Header="Skill Points" >
+                    <data:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <ListBox ItemsSource="{Binding Path=AvaliableSkillPoints}" ItemsPanel="{StaticResource horizontalListBox}"
+                             ItemTemplate="{StaticResource individualSkillPointAvaliable}" BorderBrush="Transparent" Background="Transparent" Canvas.ZIndex="0"/>
+                                <ListBox ItemsSource="{Binding Path=UsedSkillPoints}" ItemsPanel="{StaticResource horizontalListBox}"
+                             ItemTemplate="{StaticResource usedIndividualSkillPoint}" BorderBrush="Transparent" Background="{x:Null}" Canvas.ZIndex="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </data:DataGridTemplateColumn.CellTemplate>
+                </data:DataGridTemplateColumn>
+            </data:DataGrid.Columns>
+        </data:DataGrid>
+        <TextBlock x:Name="teste" Grid.Row="2" HorizontalAlignment="Center"><Run Text="Taikodom are trademark of Hoplon Infortainment. All rights reserved"/></TextBlock>
+        <HyperlinkButton Grid.Row="3" Content="Project Home" TargetName="_blank" NavigateUri="http://code.google.com/p/taikodomstats/" HorizontalAlignment="Center" Margin="2,6,2,6"/>
+    </Grid>
+</UserControl>

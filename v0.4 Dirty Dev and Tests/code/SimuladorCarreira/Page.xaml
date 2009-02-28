@@ -1,0 +1,69 @@
+﻿<UserControl xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"  x:Class="SimuladorCarreira.Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:DataSL="clr-namespace:TaikodomStats.DataSL;assembly=TaikodomStats.DataSL" 
+    Width="615" Height="600">
+    
+    <UserControl.Resources>
+        <DataSL:VisibilityConverter x:Key="VisibilityConverter" />
+        <DataTemplate x:Key="ButtonSK1">            
+            <ToggleButton x:Name="btnSK1" Background="Gray"  Checked="btnSK_Checked" Tag="{Binding SkillPoint1}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint1.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint1.Point}" ToolTipService.ToolTip="{Binding SkillPoint1.Benefits}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK2">
+            <ToggleButton x:Name="btnSK2" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint2}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint2.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint2.Point}" ToolTipService.ToolTip="{Binding SkillPoint2.Benefits}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK3">
+            <ToggleButton x:Name="btnSK3" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint3}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint3.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint3.Point}" ToolTipService.ToolTip="{Binding SkillPoint3.Benefits}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK4">
+            <ToggleButton x:Name="btnSK4" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint4}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint4.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint4.Point}" ToolTipService.ToolTip="{Binding SkillPoint4.Benefits}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK5">
+            <ToggleButton x:Name="btnSK5" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint5}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint5.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint5.Point}" ToolTipService.ToolTip="{Binding SkillPoint5.Benefits}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK6">
+            <ToggleButton x:Name="btnSK6" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint6}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint6.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint6.Point}" ToolTipService.ToolTip="{Binding SkillPoint6.Benefits}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK7">
+            <ToggleButton x:Name="btnSK7" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint7}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint7.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint7.Point}" ToolTipService.ToolTip="{Binding SkillPoint7.Benefits}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK8">
+            <ToggleButton x:Name="btnSK8" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint8}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint8.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint8.Point}" ToolTipService.ToolTip="{Binding SkillPoint8.Benefits}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK9">
+            <ToggleButton x:Name="btnSK9" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint9}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint9.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint9.Point}" ToolTipService.ToolTip="{Binding SkillPoint9.Benefits}" />
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK10">
+            <ToggleButton x:Name="btnSK10" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint10}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint10.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint10.Point}" ToolTipService.ToolTip="{Binding SkillPoint10.Benefits}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK11">
+            <ToggleButton x:Name="btnSK11" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint11}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint11.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint11.Point}" ToolTipService.ToolTip="{Binding SkillPoint11.Benefits}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK12">
+            <ToggleButton x:Name="btnSK12" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint12}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint12.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint12.Point}" ToolTipService.ToolTip="{Binding SkillPoint12.Benefits}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK13">
+            <ToggleButton x:Name="btnSK13" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint13}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint13.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint13.Point}" ToolTipService.ToolTip="{Binding SkillPoint13.Benefits}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK14">
+            <ToggleButton x:Name="btnSK14" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint14}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint14.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint14.Point}" ToolTipService.ToolTip="{Binding SkillPoint14.Benefits}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ButtonSK15">
+            <ToggleButton x:Name="btnSK15" Background="Gray" Checked="btnSK_Checked" Tag="{Binding SkillPoint15}" Unchecked="btnSK_Unchecked" Visibility="{Binding SkillPoint15.Point, Converter={StaticResource VisibilityConverter}}" Content="{Binding SkillPoint15.Point}" ToolTipService.ToolTip="{Binding SkillPoint15.Benefits}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White">
+    	<TextBlock x:Name="tbxCarreira" Height="16" HorizontalAlignment="Left" Margin="8,93,0,0" VerticalAlignment="Top" Width="53" Text="Carreira:" TextWrapping="Wrap"/>
+        <ComboBox x:Name="cbxCarreira" Height="25" HorizontalAlignment="Left" Margin="61,90,0,0" VerticalAlignment="Top" Width="132.5" SelectionChanged="cbxCarreira_SelectionChanged"/>
+        <data:DataGrid x:Name="gvwSkills" Height="380" Width="605" HorizontalAlignment="Left" VerticalAlignment="Top"
+                       Margin="8,116,0,0" AutoGenerateColumns="False" GridLinesVisibility="None" HeadersVisibility="None" 
+                       IsReadOnly="True" LoadingRow="gvwSkills_LoadingRow"></data:DataGrid>
+        <TextBlock Height="16" Margin="0,93,41,0" VerticalAlignment="Top" Text="Points:" TextWrapping="Wrap" Width="45" HorizontalAlignment="Right" RenderTransformOrigin="0.489,0.438" x:Name="tbxPointName"/>
+        <TextBlock Height="16" HorizontalAlignment="Right" Margin="0,93,6,0" VerticalAlignment="Top" Width="22" Text="" TextWrapping="Wrap" x:Name="tbxPoint"/>
+        <TextBlock Height="39" Margin="138,8,172,0" VerticalAlignment="Top" Text="TaikodomStats" TextWrapping="Wrap" FontFamily="Verdana" FontSize="36" FontWeight="Bold"/>
+        <TextBlock Height="11" Margin="175,0,181,8" VerticalAlignment="Bottom" Text="Copyright © 2008 Hoplon Infotainment. All rights reserved" TextWrapping="Wrap" FontSize="8"/>
+        <TextBlock Height="14" HorizontalAlignment="Right" Margin="0,33,146,0" VerticalAlignment="Top" Width="26" Text="v0.4" TextWrapping="Wrap"/>
+        <HyperlinkButton Content="Project Home" TargetName="_blank" NavigateUri="http://code.google.com/p/taikodomstats/" Margin="259,0,275,46" VerticalAlignment="Bottom" Height="16" />
+        
+    </Grid>
+</UserControl>
