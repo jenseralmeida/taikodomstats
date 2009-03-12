@@ -23,6 +23,14 @@
     <CreateTestPage>true</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>false</ThrowErrorsInValidation>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +54,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />
@@ -54,6 +64,16 @@
     <Reference Include="System.Windows.Controls.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
+    <BlendEmbeddedFont Include="Fonts\space age.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\xirod.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+    </BlendEmbeddedFont>
+    <Resource Include="Resources\conduta_logo.JPG" />
+    <Resource Include="Resources\ir_logo.JPG" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -62,6 +82,8 @@
     <Compile Include="CareerSimulatorPage.xaml.cs">
       <DependentUpon>CareerSimulatorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MouseWheelEventArgs.cs" />
+    <Compile Include="Controls\MouseWheelUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +105,15 @@
       <Name>TaikodomStats.DataSL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TaikodomStats_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\background_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -98,4 +129,5 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="SubsetFontSilverlight.targets" />
 </Project>

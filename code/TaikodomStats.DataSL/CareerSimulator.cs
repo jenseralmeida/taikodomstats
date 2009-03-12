@@ -12,6 +12,7 @@ namespace TaikodomStats.DataSL
     {
         private Career career;
         private string name;
+
         private readonly ObservableCollection<SkillPointsBySkillSimulator> skillPointsBySkillSimulator;
 
         public CareerSimulator(string name, Career career)
@@ -45,6 +46,8 @@ namespace TaikodomStats.DataSL
                 {
                     skillPointsBySkillSimulator.Add(newPointsBySkillSimulator);
                 }
+                ConfigDefaultSkillPoints();
+                
                 OnPropertyChanged("Career");
             }
         }
@@ -123,13 +126,30 @@ namespace TaikodomStats.DataSL
                 SkillPoint lastUsedSkillPoint = GetSkillPointBySkillSimulator(skill).GetLastUsedSkillPointBySkill();
                 if (lastUsedSkillPoint != null)
                 {
-                    //throw new InvalidOperationException("There is no used skill point to the skill informed");
-                    GetSkillPointBySkillSimulator(skill).UncheckSkillPoint(lastUsedSkillPoint);
-                    retorno = true;
+                    if (!lastUsedSkillPoint.IsDefault)
+                    {
+                        //throw new InvalidOperationException("There is no used skill point to the skill informed");
+                        GetSkillPointBySkillSimulator(skill).UncheckSkillPoint(lastUsedSkillPoint);
+                        retorno = true;
+                    }
                 }
             }
             UsedSkillPointsPropertyChangedNotify();
             return retorno;
+        }
+
+        private void ConfigDefaultSkillPoints()
+        {
+            var q = from c in SkillPointsBySkill
+                    from i in c.AvaliableSkillPoints
+                    where i.Point == 1 && i.IsDefault
+                    select i;
+            foreach (var sp in q)
+            {
+                GetSkillPointBySkillSimulator(sp.Skill).CheckSkillPoint(sp);
+                GetSkillPointBySkillSimulator(sp.Skill).CheckDefaultSkillPoint(sp);
+            }
+            UsedSkillPointsPropertyChangedNotify();
         }
 
         private SkillPointsBySkillSimulator GetSkillPointBySkillSimulator(Skill skill)

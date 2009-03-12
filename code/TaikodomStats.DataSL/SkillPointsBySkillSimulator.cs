@@ -7,12 +7,14 @@ namespace TaikodomStats.DataSL
     public class SkillPointsBySkillSimulator
     {
         private readonly ObservableCollection<SkillPoint> usedSkillPoints;
+        private readonly ObservableCollection<SkillPoint> defaultSkillPoints;
 
         public SkillPointsBySkillSimulator(Skill skill, IEnumerable<SkillPoint> avaliableSkillPoints)
         {
             Skill = skill;
             AvaliableSkillPoints = avaliableSkillPoints.ToArray();
             usedSkillPoints = new ObservableCollection<SkillPoint>();
+            defaultSkillPoints = new ObservableCollection<SkillPoint>();
         }
 
         public Skill Skill { get; private set; }
@@ -22,6 +24,11 @@ namespace TaikodomStats.DataSL
         public ObservableCollection<SkillPoint> UsedSkillPoints
         {
             get { return usedSkillPoints; }
+        }
+
+        public ObservableCollection<SkillPoint> DefaultSkillPoints
+        {
+            get { return defaultSkillPoints; }
         }
 
         internal SkillPoint GetLastUsedSkillPointBySkill()
@@ -63,6 +70,14 @@ namespace TaikodomStats.DataSL
                     select usedSkillPoint).ToArray();
         }
 
+        internal static SkillPoint[] GetDefaultSkillPoints(
+            IEnumerable<SkillPointsBySkillSimulator> skillPointsBySkillSimulators)
+        {
+            return (from skillPointSimulator in skillPointsBySkillSimulators
+                    from defaultSkillPoint in skillPointSimulator.DefaultSkillPoints
+                    select defaultSkillPoint).ToArray();
+        }
+
         internal static IEnumerable<SkillPoint> GetSkillPointsBySkill(Skill skill, IEnumerable<SkillPoint> skillPoints)
         {
             return from skillPoint in skillPoints
@@ -78,6 +93,11 @@ namespace TaikodomStats.DataSL
         internal void UncheckSkillPoint(SkillPoint skillPoint)
         {
             usedSkillPoints.Remove(skillPoint);
+        }
+
+        internal void CheckDefaultSkillPoint(SkillPoint skillPoint)
+        {
+            defaultSkillPoints.Add(skillPoint);
         }
 
         internal static SkillPointsBySkillSimulator[] CreateSkillPointsBySkillSimulator(SkillPointsBySkill[] skill)

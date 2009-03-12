@@ -15,15 +15,21 @@ namespace TaikodomStats.DataSL
     /// </summary>
     public class SkillPoint: IComparable
     {
-        internal SkillPoint(Career career, Skill skill, short point, string benefits)
+        internal SkillPoint(Career career, Skill skill, short point, string benefits, bool isDefault, int? requerimentLV)
         {
             Career = career;
             Skill = skill;
             Point = point;
             Benefits = benefits;
+            IsDefault = isDefault;
+            RequerimentLV = requerimentLV;
         }
 
         public Skill Skill { get; private set; }
+
+        public bool IsDefault { get; private set; }
+
+        public int? RequerimentLV { get; private set; }
 
         public short Point { get; private set; }
 
@@ -33,7 +39,7 @@ namespace TaikodomStats.DataSL
 
         public override bool Equals(object obj)
         {
-            SkillPoint sp = obj as SkillPoint;
+            var sp = obj as SkillPoint;
             if (sp == null)
             {
                 return false;

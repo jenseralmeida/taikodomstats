@@ -23,7 +23,6 @@ namespace TaikodomStats.DataSL
         {
             Name = name;
             careers = new List<Career>();
-#warning nao consegui substituir isto
             //skillPoints = new SortedList<short, SkillPoint>();
         }
 

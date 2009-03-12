@@ -16,9 +16,9 @@ namespace TaikodomStats.DataSL
     /// </summary>
     public class Career
     {
-        public static Career[] GetAll()
+        public static Career[] GetAll(bool pt)
         {
-            return InstanciateData.GetCareers();
+            return InstanciateData.GetCareers(pt);
         }
 
         public Career(string name, short totalPoints)
@@ -53,12 +53,12 @@ namespace TaikodomStats.DataSL
 
         public string Name { get; set; }
 
-        public void AddSkillPoint(Skill skill, short point, string benefits)
+        public void AddSkillPoint(Skill skill, short point, string benefits, bool isDefault, int? requerimentLV)
         {
             var skillPoint = GetSkillPoint(skill, point);
             if (skillPoint == null)
             {
-                skillPoint = new SkillPoint(this, skill, point, benefits);
+                skillPoint = new SkillPoint(this, skill, point, benefits, isDefault, requerimentLV);
                 skillPoints.Add(skillPoint);
             }
             skillPoint.Benefits = benefits;
