@@ -82,6 +82,7 @@
     <Compile Include="CareerSimulatorPage.xaml.cs">
       <DependentUpon>CareerSimulatorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CareerSimulatorBenefictsConverter.cs" />
     <Compile Include="Controls\MouseWheelEventArgs.cs" />
     <Compile Include="Controls\MouseWheelUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

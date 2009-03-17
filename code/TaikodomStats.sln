@@ -24,7 +24,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TaikodomStats_Web", "Taikod
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1374"
+		VWDPort = "2288"
 		ProjOutputReferences = "{0CCE5498-E280-4BBB-8B4D-D94E4A0430F0}|ClientBin|false;"
 	EndProjectSection
 EndProject

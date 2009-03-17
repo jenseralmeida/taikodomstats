@@ -10,17 +10,17 @@ namespace TaikodomStats.DataSL
     /// </summary>
     public class CareerSimulator : INotifyPropertyChanged
     {
-        private Career career;
-        private string name;
-
-        private readonly ObservableCollection<SkillPointsBySkillSimulator> skillPointsBySkillSimulator;
-
         public CareerSimulator(string name, Career career)
         {
             skillPointsBySkillSimulator = new ObservableCollection<SkillPointsBySkillSimulator>();
             Name = name;
             Career = career;
         }
+
+        private Career career;
+        private string name;
+        private Rank currentRank;
+        private readonly ObservableCollection<SkillPointsBySkillSimulator> skillPointsBySkillSimulator;
 
         public string Name
         {
@@ -35,20 +35,51 @@ namespace TaikodomStats.DataSL
         public Career Career
         {
             get { return career; }
-            // TODO: Permit public change of career. Do tests before
-            private set
+            set
             {
                 career = value;
                 skillPointsBySkillSimulator.Clear();
                 SkillPointsBySkillSimulator[] newPointsBySkillSimulators =
-                    SkillPointsBySkillSimulator.CreateSkillPointsBySkillSimulator(career.SkillPointsBySkill);
+                    SkillPointsBySkillSimulator.CreateSkillPointsBySkillSimulator(career);
                 foreach (var newPointsBySkillSimulator in newPointsBySkillSimulators)
                 {
                     skillPointsBySkillSimulator.Add(newPointsBySkillSimulator);
                 }
                 ConfigDefaultSkillPoints();
-                
-                OnPropertyChanged("Career");
+                CurrentRank = career.GetRank(1);
+                OnPropertyChanged(null);
+            }
+        }
+
+        private void ConfigDefaultSkillPoints()
+        {
+            var q = from c in SkillPointsBySkill
+                    from i in c.AvaliableSkillPoints
+                    where i.Point == 1 && i.IsDefault
+                    select i;
+            foreach (var sp in q)
+            {
+                GetSkillPointBySkillSimulator(sp.Skill).CheckSkillPoint(sp);
+                GetSkillPointBySkillSimulator(sp.Skill).CheckDefaultSkillPoint(sp);
+            }
+        }
+
+        public Rank CurrentRank
+        {
+            get { return currentRank; }
+            set
+            {
+                currentRank = value;
+                OnPropertyChanged("CurrentRank");
+                UsedSkillPointsPropertyChangedNotify();
+            }
+        }
+
+        public Rank[] Ranks
+        {
+            get
+            {
+                return career.Ranks;
             }
         }
 
@@ -61,7 +92,7 @@ namespace TaikodomStats.DataSL
 
         public short NumberOfAvailableSkillPoints
         {
-            get { return (short) (Career.TotalPoints - NumberOfUsedSkillPoints); }
+            get { return (short)(CurrentRank.TotalPoints - NumberOfUsedSkillPoints); }
         }
 
         public ObservableCollection<SkillPointsBySkillSimulator> SkillPointsBySkill
@@ -73,7 +104,7 @@ namespace TaikodomStats.DataSL
 
         #region Increment / Decrement SkillPoint util
 
-        public bool SetSkillPoint(SkillPoint skillPoint)
+        public bool SetSkillPoint(SkillPoint skillPoint, byte rank)
         {
             Skill skill = skillPoint.Skill;
             short point = skillPoint.Point;
@@ -86,7 +117,7 @@ namespace TaikodomStats.DataSL
             diferenceOfPoints = Math.Abs(diferenceOfPoints);
             while ((diferenceOfPoints--) != 0)
             {
-                sucess = doIncrementOfSkillPoints ? IncrementSkillPoint(skill) : DecrementSkillPoint(skill);
+                sucess = doIncrementOfSkillPoints ? IncrementSkillPoint(skill, rank) : DecrementSkillPoint(skill);
                 if (!sucess)
                 {
                     break;
@@ -95,17 +126,17 @@ namespace TaikodomStats.DataSL
             return sucess;
         }
 
-        public bool IncrementSkillPoint(Skill skill)
+        public bool IncrementSkillPoint(Skill skill, byte rank)
         {
             bool retorno = false;
-            if (NumberOfUsedSkillPoints < career.TotalPoints)
+            if (NumberOfUsedSkillPoints < CurrentRank.TotalPoints)
             {
                 //throw new InvalidOperationException("There is mores skill points used that total point of the career");
                 if (career.ContainsSkill(skill))
                 {
                     //throw new ArgumentException("The informed skill must exist in selected career", "skill");
                     SkillPoint firstUnusedSkillPoint = GetSkillPointBySkillSimulator(skill).GetFirstUnsedSkillPoint();
-                    if (firstUnusedSkillPoint != null)
+                    if (firstUnusedSkillPoint != null && (firstUnusedSkillPoint.RequerimentLV <= rank || firstUnusedSkillPoint.RequerimentLV == null))
                     {
                         //throw new InvalidOperationException("There is no new unsed skill point in the selected skill");
                         GetSkillPointBySkillSimulator(skill).CheckSkillPoint(firstUnusedSkillPoint);
@@ -138,20 +169,6 @@ namespace TaikodomStats.DataSL
             return retorno;
         }
 
-        private void ConfigDefaultSkillPoints()
-        {
-            var q = from c in SkillPointsBySkill
-                    from i in c.AvaliableSkillPoints
-                    where i.Point == 1 && i.IsDefault
-                    select i;
-            foreach (var sp in q)
-            {
-                GetSkillPointBySkillSimulator(sp.Skill).CheckSkillPoint(sp);
-                GetSkillPointBySkillSimulator(sp.Skill).CheckDefaultSkillPoint(sp);
-            }
-            UsedSkillPointsPropertyChangedNotify();
-        }
-
         private SkillPointsBySkillSimulator GetSkillPointBySkillSimulator(Skill skill)
         {
             return (from pointsBySkillSimulator in skillPointsBySkillSimulator
@@ -174,7 +191,7 @@ namespace TaikodomStats.DataSL
         /// <returns></returns>
         public CareerSimulator Clone()
         {
-            //var clonedCS = new CareerSimulator(Name, Career);
+            //var clonedCS = new CareerSimulator(rankNumber, Career);
             //clonedCS.usedSkillPoints.AddRange(usedSkillPoints);
             //return clonedCS;
             throw new NotImplementedException();

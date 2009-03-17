@@ -2,7 +2,17 @@
 <head>
     <title>TaikodomStats </title>
 
-    <script type="text/javascript" src="Script/GoogleAnalytics.js"></script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-7637543-1");
+            pageTracker._trackPageview();
+        } catch (err) { }
+    </script>
 
     <link href="App_Themes/Default/Default.css" type="text/css" rel="stylesheet" />
 
@@ -59,7 +69,7 @@
             <param name="minRuntimeVersion" value="2.0.31005.0" />
             <param name="autoUpgrade" value="true" />
             <param name="onerror" value="onSilverlightError" />
-            <param name="splashScreenSource" value="Load.xaml" />
+            <param name="splashScreenSource" value="ClientBin/Load.xaml" />
             <param name="onSourceDownloadProgressChanged" value="progressChanged" />
             <a href="http://go.microsoft.com/fwlink/?LinkID=124807" style="text-decoration: none;">
                 <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight"

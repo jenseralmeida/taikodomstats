@@ -16,23 +16,44 @@ namespace TaikodomStats.DataSL
     /// </summary>
     public class Career
     {
-        public static Career[] GetAll(bool pt)
+        public static Career[] GetAll()
         {
-            return InstanciateData.GetCareers(pt);
+            return RepositoryOfData.GetCareers();
         }
-
-        public Career(string name, short totalPoints)
+        
+        public Career(string name)
         {
             Name = name;
-            TotalPoints = totalPoints;
             skillPoints = new List<SkillPoint>();
+            ranks = new List<Rank>(50);
+            CreateDefaultRankList();
         }
 
+        private void CreateDefaultRankList()
+        {
+            ranks.Add(new Rank(1, 3));
+            byte countToDoubleIncrement = 1;
+            for (byte rankNumber = 2, totalPoints = 3; rankNumber <= 50; rankNumber++)
+            {
+                ++totalPoints;
+                if (--countToDoubleIncrement == 0)
+                {
+                    ++totalPoints;
+                    countToDoubleIncrement = 3;
+                }
+                ranks.Add(new Rank(rankNumber, totalPoints));
+            }
+        }
+
+        private readonly List<Rank> ranks;
         private readonly List<SkillPoint> skillPoints;
 
 
-        public short TotalPoints { get; set; }
-
+        public Rank GetRank(byte rankNumber)
+        {
+            return (from r in Ranks where r.RankNumber == rankNumber select r).FirstOrDefault();
+        }
+        
         public Skill[] Skills
         {
             get { return (from skillPoint in skillPoints select skillPoint.Skill).Distinct().ToArray(); }
@@ -43,15 +64,12 @@ namespace TaikodomStats.DataSL
             get { return skillPoints.ToArray(); }
         }
 
-        public SkillPointsBySkill[] SkillPointsBySkill
-        {
-            get
-            {
-                return DataSL.SkillPointsBySkill.GetSkillPointsBySkill(Skills, SkillPoints).ToArray();
-            }
-        }
-
         public string Name { get; set; }
+
+        public Rank[] Ranks
+        {
+            get { return ranks.ToArray(); }
+        }
 
         public void AddSkillPoint(Skill skill, short point, string benefits, bool isDefault, int? requerimentLV)
         {
@@ -77,11 +95,6 @@ namespace TaikodomStats.DataSL
 
         }
 
-        //private Skill GetSkills(Career career)
-        //{
-            
-        //}
-
         public bool ContainsSkill(Skill skill)
         {
             var q = from s in Skills where s == skill select s;
@@ -91,7 +104,7 @@ namespace TaikodomStats.DataSL
 
         public SkillPoint[] GetSkillPoints(Skill skill)
         {
-            return DataSL.SkillPointsBySkill.GetSkillPointsBySkill(skill, skillPoints).ToArray();
+            return (from sp in skillPoints where sp.Skill == skill select sp).ToArray();
         }
 
         public override string ToString()

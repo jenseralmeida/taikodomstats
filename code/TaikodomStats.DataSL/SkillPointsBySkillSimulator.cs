@@ -100,16 +100,12 @@ namespace TaikodomStats.DataSL
             defaultSkillPoints.Add(skillPoint);
         }
 
-        internal static SkillPointsBySkillSimulator[] CreateSkillPointsBySkillSimulator(SkillPointsBySkill[] skill)
+        internal static SkillPointsBySkillSimulator[] CreateSkillPointsBySkillSimulator(Career career)
         {
-            var list = new List<SkillPointsBySkillSimulator>(skill.Length);
-            foreach (SkillPointsBySkill bySkill in skill)
-            {
-                var simulator = new SkillPointsBySkillSimulator(bySkill.Skill,
-                                                                bySkill.SkillPoints);
-                list.Add(simulator);
-            }
-            return list.ToArray();
+            var q = from s in career.Skills
+                    let skillPointsBySkill = GetSkillPointsBySkill(s, career.SkillPoints)
+                    select new SkillPointsBySkillSimulator(s, skillPointsBySkill);
+            return q.ToArray();
         }
     }
 }
