@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TaikodomStats </title>
+
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-7637543-1");
+            pageTracker._trackPageview();
+        } catch (err) { }
+    </script>
+
+    <link href="App_Themes/Default/Default.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            }
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+
+            var errMsg = "Unhandled Error in Silverlight 2 Application " + appSource + "\n";
+
+            errMsg += "Code: " + iErrorCode + "    \n";
+            errMsg += "Category: " + errorType + "       \n";
+            errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError") {
+                errMsg += "File: " + args.xamlFile + "     \n";
+                errMsg += "Line: " + args.lineNumber + "     \n";
+                errMsg += "Position: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError") {
+                if (args.lineNumber != 0) {
+                    errMsg += "Line: " + args.lineNumber + "     \n";
+                    errMsg += "Position: " + args.charPosition + "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+
+            throw new Error(errMsg);
+        }
+
+        function progressChanged(sender, eventArgs) {
+            sender.findName("lbProgressValue").text = Math.floor(eventArgs.progress * 100) + "%";
+            sender.findName("brdProgressMeter").width = eventArgs.progress * sender.findName("brdProgressBoundary").width;
+        }		
+
+    </script>
+
+</head>
+<body>
+    <!-- Runtime errors from Silverlight will be displayed here.
+	This will contain debugging information and should be removed or hidden when debugging is completed -->
+    <div id='errorLocation' style="font-size: small; color: Gray;">
+    </div>
+    <div id="silverlightControlHost" style="height: 100%;">
+        <object data="data:application/x-silverlight," type="application/x-silverlight-2"
+            width="100%" height="100%">
+            <param name="source" value="ClientBin/TaikodomStats.xap" />
+            <param name="background" value="white" />
+            <param name="minRuntimeVersion" value="2.0.31005.0" />
+            <param name="autoUpgrade" value="true" />
+            <param name="onerror" value="onSilverlightError" />
+            <param name="splashScreenSource" value="ClientBin/Load.xaml" />
+            <param name="onSourceDownloadProgressChanged" value="progressChanged" />
+            <a href="http://go.microsoft.com/fwlink/?LinkID=124807" style="text-decoration: none;">
+                <img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight"
+                    style="border-style: none" />
+            </a>
+        </object>
+        <iframe style='visibility: hidden; height: 0; width: 0; border: 0px'></iframe>
+    </div>
+</body>
+</html>
